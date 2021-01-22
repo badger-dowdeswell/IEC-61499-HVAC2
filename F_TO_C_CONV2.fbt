@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <!DOCTYPE FBType SYSTEM "http://www.holobloc.com/xml/LibraryElement.dtd">
-<FBType Comment="Template for a Simple Function Block Type" Name="F_TO_C_CONV">
+<FBType Comment="Template for a Simple Function Block Type" Name="F_TO_C_CONV2">
   <Identification Standard="61499-1"/>
   <VersionInfo Author="badger" Date="2018-12-03" Version="1.0"/>
   <InterfaceList>

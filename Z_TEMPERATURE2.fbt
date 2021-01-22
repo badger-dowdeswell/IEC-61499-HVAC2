@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <!DOCTYPE FBType SYSTEM "http://www.holobloc.com/xml/LibraryElement.dtd">
-<FBType Comment="Service Interface Function Block Type" Name="Z_TEMPERATURE">
+<FBType Comment="Service Interface Function Block Type" Name="Z_TEMPERATURE2">
   <Identification Description="Interface to a tsemperature sensor probe that samples a designated zone in the simulated environment." Function="Temperature sensor interface" Standard="61499-2" Type="Service Interface Function Block"/>
   <VersionInfo Author="badger" Date="2020-01-04" Organization="AUT" Remarks="Original version" Version="1.0"/>
   <CompilerInfo header="#include Z_TEMPERATURE_Library.cpp."/>

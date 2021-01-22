@@ -1,21 +1,18 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <!DOCTYPE FBType SYSTEM "http://www.holobloc.com/xml/LibraryElement.dtd">
-<FBType Comment="Service Interface Function Block Type" Name="Z_DISPLAY">
+<FBType Comment="Service Interface Function Block Type" Name="Z_SWITCHES2">
   <Identification Standard="61499-2"/>
-  <VersionInfo Author="badger" Date="2020-01-09" Version="1.0"/>
+  <VersionInfo Author="badger" Date="2020-01-13" Version="1.0"/>
   <InterfaceList>
     <EventInputs>
-      <Event Comment="" Name="SHOW_TEMP" Type="Event">
-        <With Var="TEMP"/>
-      </Event>
-      <Event Comment="Update the set temperature display" Name="SHOW_SET_TEMP" Type="Event">
-        <With Var="SET_TEMP"/>
-      </Event>
+      <Event Comment="Check the switches for changes" Name="SAMPLE" Type="Event"/>
     </EventInputs>
+    <EventOutputs>
+      <Event Comment="Signal that the zone set up switch has been pressed" Name="CNF_CMD_UP" Type="Event"/>
+      <Event Comment="Signal that the zone set down switch has been pressed" Name="CNF_CMD_DOWN" Type="Event"/>
+    </EventOutputs>
     <InputVars>
-      <VarDeclaration Comment="Zone temperature to display on the panel" Name="TEMP" Type="REAL"/>
-      <VarDeclaration Comment="Zone set temperature to display on the panel" Name="SET_TEMP" Type="REAL"/>
-      <VarDeclaration Comment="URL of simulation server" Name="ADDRESS" Type="STRING"/>
+      <VarDeclaration Comment="URL of the simulation server" Name="ADDRESS" Type="STRING"/>
       <VarDeclaration Comment="Listener port on the simulation server" Name="PORT" Type="LINT"/>
       <VarDeclaration Comment="Zone the controller is managing" Name="ZONE" Type="INT"/>
       <VarDeclaration Comment="" Name="TI" Type="STRING"/>

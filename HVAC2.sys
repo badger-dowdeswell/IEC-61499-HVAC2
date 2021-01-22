@@ -4,44 +4,49 @@
   <VersionInfo Author="badger" Date="2021-01-14" Version="1.0"/>
   <Application Comment="" Name="HVAC2App">
     <SubAppNetwork>
-      <FB Comment="" Name="E_CYCLE" Type="E_CYCLE" x="1611.764705882353" y="447.0588235294117">
+      <FB Comment="" Name="Z_CONTROLLER" Type="Z_CONTROLLER2" x="3682.3529411764703" y="435.2941176470588">
+        <Parameter Name="TI" Value="RQ1 RQ4 RQ5"/>
+      </FB>
+      <FB Comment="" Name="E_CYCLE" Type="E_CYCLE" x="1623.5294117647059" y="76.47058823529412">
         <Parameter Name="DT" Value="T#100ms"/>
       </FB>
-      <FB Comment="" Name="F_TO_C_CONV_1" Type="F_TO_C_CONV" x="3100.0" y="2241.176470588235">
-        <Parameter Name="TI" Value="RQ 2.0"/>
-      </FB>
-      <FB Comment="" Name="Z_TEMPERATURE" Type="Z_TEMPERATURE" x="1670.5882352941176" y="2235.2941176470586">
+      <FB Comment="" Name="Z_SWITCHES" Type="Z_SWITCHES2" x="1623.5294117647059" y="882.3529411764705">
         <Parameter Name="ADDRESS" Value="127.0.0.1"/>
         <Parameter Name="PORT" Value="62501"/>
         <Parameter Name="ZONE" Value="1"/>
+        <Parameter Name="TI" Value="RQ4 RQ5"/>
       </FB>
-      <FB Comment="" Name="Z_CONTROLLER" Type="Z_CONTROLLER2" x="2923.529411764706" y="805.8823529411765"/>
-      <FB Comment="" Name="Z_DISPLAY" Type="Z_DISPLAY" x="4805.882352941177" y="1541.1764705882351">
+      <FB Comment="" Name="Z_TEMPERATURE" Type="Z_TEMPERATURE2" x="1676.470588235294" y="2070.5882352941176">
         <Parameter Name="ADDRESS" Value="127.0.0.1"/>
         <Parameter Name="PORT" Value="62501"/>
         <Parameter Name="ZONE" Value="1"/>
+        <Parameter Name="TI" Value="RQ1 RQ8"/>
       </FB>
-      <FB Comment="" Name="Z_SWITCHES" Type="Z_SWITCHES" x="1605.8823529411764" y="1158.8235294117646">
+      <FB Comment="" Name="F_TO_C_CONV2" Type="F_TO_C_CONV2" x="3435.2941176470586" y="2105.882352941176">
+        <Parameter Name="TI" Value="RQ2 RQ3 RQ6"/>
+      </FB>
+      <FB Comment="" Name="Z_DISPLAY" Type="Z_DISPLAY2" x="5705.882352941176" y="1252.941176470588">
         <Parameter Name="ADDRESS" Value="127.0.0.1"/>
         <Parameter Name="PORT" Value="62501"/>
         <Parameter Name="ZONE" Value="1"/>
+        <Parameter Name="TI" Value="RQ1"/>
       </FB>
       <EventConnections>
-        <Connection Comment="" Destination="F_TO_C_CONV_1.REQ" Source="Z_TEMPERATURE.CNF_TEMP" dx1="482.35294117647055"/>
-        <Connection Comment="" Destination="Z_CONTROLLER.CYCLE" Source="E_CYCLE.EO" dx1="329.4117647058823"/>
-        <Connection Comment="" Destination="Z_CONTROLLER.TEMP_CHANGED" Source="F_TO_C_CONV_1.CNF" dx1="129.41176470588235" dx2="211.76470588235293" dy="-499.99999999999994"/>
-        <Connection Comment="" Destination="Z_TEMPERATURE.SAMPLE" Source="Z_CONTROLLER.GET_TEMP" dx1="205.88235294117646" dx2="147.05882352941177" dy="999.9999999999999"/>
-        <Connection Comment="" Destination="Z_DISPLAY.SHOW_TEMP" Source="Z_CONTROLLER.CNF_TEMP" dx1="505.8823529411764"/>
-        <Connection Comment="" Destination="Z_DISPLAY.SHOW_SET_TEMP" Source="Z_CONTROLLER.CNF_SET_TEMP" dx1="423.52941176470586"/>
-        <Connection Comment="" Destination="Z_SWITCHES.SAMPLE" Source="E_CYCLE.EO" dx1="70.58823529411764" dx2="135.2941176470588" dy="523.5294117647059"/>
-        <Connection Comment="" Destination="Z_CONTROLLER.CMD_UP" Source="Z_SWITCHES.CNF_CMD_UP" dx1="241.17647058823528"/>
-        <Connection Comment="" Destination="Z_CONTROLLER.CMD_DOWN" Source="Z_SWITCHES.CNF_CMD_DOWN" dx1="94.11764705882352"/>
+        <Connection Comment="" Destination="Z_SWITCHES.SAMPLE" Source="E_CYCLE.EO" dx1="70.58823529411764" dx2="70.58823529411764" dy="576.470588235294"/>
+        <Connection Comment="" Destination="Z_CONTROLLER.CYCLE" Source="E_CYCLE.EO" dx1="764.7058823529411"/>
+        <Connection Comment="" Destination="Z_CONTROLLER.CMD_DOWN" Source="Z_SWITCHES.CNF_CMD_DOWN" dx1="547.0588235294117"/>
+        <Connection Comment="" Destination="Z_CONTROLLER.CMD_UP" Source="Z_SWITCHES.CNF_CMD_UP" dx1="447.0588235294117"/>
+        <Connection Comment="" Destination="Z_TEMPERATURE.SAMPLE" Source="Z_CONTROLLER.GET_TEMP" dx1="199.99999999999997" dx2="70.58823529411764" dy="1052.941176470588"/>
+        <Connection Comment="" Destination="F_TO_C_CONV2.REQ" Source="Z_TEMPERATURE.CNF_TEMP" dx1="305.88235294117646"/>
+        <Connection Comment="" Destination="Z_CONTROLLER.TEMP_CHANGED" Source="F_TO_C_CONV2.CNF" dx1="405.88235294117646" dx2="805.8823529411765" dy="-705.8823529411765"/>
+        <Connection Comment="" Destination="Z_DISPLAY.SHOW_TEMP" Source="Z_CONTROLLER.CNF_TEMP" dx1="647.0588235294117"/>
+        <Connection Comment="" Destination="Z_DISPLAY.SHOW_SET_TEMP" Source="Z_CONTROLLER.CNF_SET_TEMP" dx1="529.4117647058823"/>
       </EventConnections>
       <DataConnections>
-        <Connection Comment="" Destination="F_TO_C_CONV_1.TEMP_F" Source="Z_TEMPERATURE.TEMP" dx1="482.35294117647055"/>
-        <Connection Comment="" Destination="Z_CONTROLLER.TEMP" Source="F_TO_C_CONV_1.TEMP_C" dx1="276.4705882352941" dx2="111.76470588235293" dy="-870.5882352941176"/>
-        <Connection Comment="" Destination="Z_DISPLAY.TEMP" Source="Z_CONTROLLER.ZONE_TEMP" dx1="364.70588235294116"/>
-        <Connection Comment="" Destination="Z_DISPLAY.SET_TEMP" Source="Z_CONTROLLER.SET_TEMP" dx1="300.0"/>
+        <Connection Comment="" Destination="F_TO_C_CONV2.TEMP_F" Source="Z_TEMPERATURE.TEMP" dx1="305.88235294117646"/>
+        <Connection Comment="" Destination="Z_CONTROLLER.TEMP" Source="F_TO_C_CONV2.TEMP_C" dx1="629.4117647058823" dx2="611.7647058823529" dy="-1129.4117647058822"/>
+        <Connection Comment="" Destination="Z_DISPLAY.TEMP" Source="Z_CONTROLLER.ZONE_TEMP" dx1="458.8235294117647"/>
+        <Connection Comment="" Destination="Z_DISPLAY.SET_TEMP" Source="Z_CONTROLLER.SET_TEMP" dx1="329.4117647058823"/>
       </DataConnections>
     </SubAppNetwork>
   </Application>
@@ -51,54 +56,59 @@
     <Attribute Comment="color" Name="Color" Type="STRING" Value="137,238,110"/>
     <Resource Comment="" Name="EMB_RES" Type="EMB_RES" x="0.0" y="0.0">
       <FBNetwork>
-        <FB Comment="" Name="E_CYCLE" Type="E_CYCLE" x="2958.8235294117644" y="605.8823529411765">
+        <FB Comment="" Name="Z_CONTROLLER" Type="Z_CONTROLLER2" x="2923.529411764706" y="805.8823529411765">
+          <Parameter Name="TI" Value="RQ1 RQ4 RQ5"/>
+        </FB>
+        <FB Comment="" Name="E_CYCLE" Type="E_CYCLE" x="1699.9999999999998" y="499.99999999999994">
           <Parameter Name="DT" Value="T#100ms"/>
         </FB>
-        <FB Comment="" Name="F_TO_C_CONV_1" Type="F_TO_C_CONV" x="3100.0" y="2241.176470588235">
-          <Parameter Name="TI" Value="RQ 2.0"/>
-        </FB>
-        <FB Comment="" Name="Z_TEMPERATURE" Type="Z_TEMPERATURE" x="1664.705882352941" y="2117.6470588235293">
+        <FB Comment="" Name="Z_SWITCHES" Type="Z_SWITCHES2" x="1635.2941176470588" y="1300.0">
           <Parameter Name="ADDRESS" Value="127.0.0.1"/>
           <Parameter Name="PORT" Value="62501"/>
           <Parameter Name="ZONE" Value="1"/>
+          <Parameter Name="TI" Value="RQ4 RQ5"/>
         </FB>
-        <FB Comment="" Name="Z_CONTROLLER" Type="Z_CONTROLLER2" x="2923.529411764706" y="805.8823529411765"/>
-        <FB Comment="" Name="Z_DISPLAY" Type="Z_DISPLAY" x="4805.882352941177" y="1541.1764705882351">
+        <FB Comment="" Name="Z_TEMPERATURE" Type="Z_TEMPERATURE2" x="1676.470588235294" y="2070.5882352941176">
           <Parameter Name="ADDRESS" Value="127.0.0.1"/>
           <Parameter Name="PORT" Value="62501"/>
           <Parameter Name="ZONE" Value="1"/>
+          <Parameter Name="TI" Value="RQ1 RQ8"/>
         </FB>
-        <FB Comment="" Name="Z_SWITCHES" Type="Z_SWITCHES" x="1605.8823529411764" y="1158.8235294117646">
+        <FB Comment="" Name="F_TO_C_CONV2" Type="F_TO_C_CONV2" x="3082.3529411764703" y="2100.0">
+          <Parameter Name="TI" Value="RQ2 RQ3 RQ6"/>
+        </FB>
+        <FB Comment="" Name="Z_DISPLAY" Type="Z_DISPLAY2" x="5723.529411764705" y="1435.2941176470588">
           <Parameter Name="ADDRESS" Value="127.0.0.1"/>
           <Parameter Name="PORT" Value="62501"/>
           <Parameter Name="ZONE" Value="1"/>
+          <Parameter Name="TI" Value="RQ1"/>
         </FB>
         <EventConnections>
-          <Connection Comment="" Destination="F_TO_C_CONV_1.REQ" Source="Z_TEMPERATURE.CNF_TEMP"/>
+          <Connection Comment="" Destination="Z_SWITCHES.SAMPLE" Source="E_CYCLE.EO"/>
           <Connection Comment="" Destination="Z_CONTROLLER.CYCLE" Source="E_CYCLE.EO"/>
-          <Connection Comment="" Destination="Z_CONTROLLER.TEMP_CHANGED" Source="F_TO_C_CONV_1.CNF"/>
+          <Connection Comment="" Destination="Z_CONTROLLER.CMD_DOWN" Source="Z_SWITCHES.CNF_CMD_DOWN"/>
+          <Connection Comment="" Destination="Z_CONTROLLER.CMD_UP" Source="Z_SWITCHES.CNF_CMD_UP"/>
           <Connection Comment="" Destination="Z_TEMPERATURE.SAMPLE" Source="Z_CONTROLLER.GET_TEMP"/>
+          <Connection Comment="" Destination="F_TO_C_CONV2.REQ" Source="Z_TEMPERATURE.CNF_TEMP"/>
+          <Connection Comment="" Destination="Z_CONTROLLER.TEMP_CHANGED" Source="F_TO_C_CONV2.CNF"/>
           <Connection Comment="" Destination="Z_DISPLAY.SHOW_TEMP" Source="Z_CONTROLLER.CNF_TEMP"/>
           <Connection Comment="" Destination="Z_DISPLAY.SHOW_SET_TEMP" Source="Z_CONTROLLER.CNF_SET_TEMP"/>
-          <Connection Comment="" Destination="Z_SWITCHES.SAMPLE" Source="E_CYCLE.EO"/>
-          <Connection Comment="" Destination="Z_CONTROLLER.CMD_UP" Source="Z_SWITCHES.CNF_CMD_UP"/>
-          <Connection Comment="" Destination="Z_CONTROLLER.CMD_DOWN" Source="Z_SWITCHES.CNF_CMD_DOWN"/>
         </EventConnections>
         <DataConnections>
-          <Connection Comment="" Destination="F_TO_C_CONV_1.TEMP_F" Source="Z_TEMPERATURE.TEMP"/>
-          <Connection Comment="" Destination="Z_CONTROLLER.TEMP" Source="F_TO_C_CONV_1.TEMP_C"/>
+          <Connection Comment="" Destination="F_TO_C_CONV2.TEMP_F" Source="Z_TEMPERATURE.TEMP"/>
+          <Connection Comment="" Destination="Z_CONTROLLER.TEMP" Source="F_TO_C_CONV2.TEMP_C"/>
           <Connection Comment="" Destination="Z_DISPLAY.TEMP" Source="Z_CONTROLLER.ZONE_TEMP"/>
           <Connection Comment="" Destination="Z_DISPLAY.SET_TEMP" Source="Z_CONTROLLER.SET_TEMP"/>
         </DataConnections>
       </FBNetwork>
     </Resource>
   </Device>
-  <Mapping From="HVAC2App.E_CYCLE" To="FORTE_PC.EMB_RES.E_CYCLE"/>
-  <Mapping From="HVAC2App.F_TO_C_CONV_1" To="FORTE_PC.EMB_RES.F_TO_C_CONV_1"/>
-  <Mapping From="HVAC2App.Z_TEMPERATURE" To="FORTE_PC.EMB_RES.Z_TEMPERATURE"/>
   <Mapping From="HVAC2App.Z_CONTROLLER" To="FORTE_PC.EMB_RES.Z_CONTROLLER"/>
-  <Mapping From="HVAC2App.Z_DISPLAY" To="FORTE_PC.EMB_RES.Z_DISPLAY"/>
+  <Mapping From="HVAC2App.E_CYCLE" To="FORTE_PC.EMB_RES.E_CYCLE"/>
   <Mapping From="HVAC2App.Z_SWITCHES" To="FORTE_PC.EMB_RES.Z_SWITCHES"/>
+  <Mapping From="HVAC2App.Z_TEMPERATURE" To="FORTE_PC.EMB_RES.Z_TEMPERATURE"/>
+  <Mapping From="HVAC2App.F_TO_C_CONV2" To="FORTE_PC.EMB_RES.F_TO_C_CONV2"/>
+  <Mapping From="HVAC2App.Z_DISPLAY" To="FORTE_PC.EMB_RES.Z_DISPLAY"/>
   <Segment Comment="" Name="Ethernet" Type="Ethernet" dx1="1764.705882352941" x="3470.5882352941176" y="1229.4117647058822">
     <Attribute Comment="color" Name="Color" Type="STRING" Value="199,38,119"/>
   </Segment>

@@ -16,18 +16,17 @@
     <InputVars>
       <VarDeclaration Comment="cycle time" Name="DT" Type="TIME"/>
     </InputVars>
-    <OutputVars/>
   </InterfaceList>
   <FBNetwork>
-    <FB Comment="" Name="E_DELAY" Type="E_DELAY" x="1200.0" y="-100.0"/>
-    <DataConnections>
-      <Connection Comment="" Destination="E_DELAY.DT" Source="DT" dx1="0.0" dx2="0.0" dy="0.0"/>
-    </DataConnections>
+    <FB Comment="" Name="E_DELAY" Type="E_DELAY" x="1200.0" y="-99.99999999999999"/>
     <EventConnections>
-      <Connection Comment="" Destination="E_DELAY.START" Source="START" dx1="270.0" dx2="0.0" dy="0.0"/>
-      <Connection Comment="" Destination="E_DELAY.STOP" Source="STOP" dx1="0.0" dx2="0.0" dy="0.0"/>
-      <Connection Comment="" Destination="E_DELAY.START" Source="E_DELAY.EO" dx1="0.0" dx2="0.0" dy="-170.0"/>
-      <Connection Comment="" Destination="EO" Source="E_DELAY.EO" dx1="0.0" dx2="0.0" dy="0.0"/>
+      <Connection Comment="" Destination="E_DELAY.START" Source="START" dx1="264.70588235294116"/>
+      <Connection Comment="" Destination="E_DELAY.STOP" Source="STOP" dx1="452.9411764705882"/>
+      <Connection Comment="" Destination="E_DELAY.START" Source="E_DELAY.EO" dx1="70.58823529411764" dx2="70.58823529411764" dy="141.17647058823528"/>
+      <Connection Comment="" Destination="EO" Source="E_DELAY.EO" dx1="441.17647058823525"/>
     </EventConnections>
+    <DataConnections>
+      <Connection Comment="" Destination="E_DELAY.DT" Source="DT" dx1="452.9411764705882"/>
+    </DataConnections>
   </FBNetwork>
 </FBType>
