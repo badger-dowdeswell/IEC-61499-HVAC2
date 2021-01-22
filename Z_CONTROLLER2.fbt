@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE FBType SYSTEM "http://www.holobloc.com/xml/LibraryElement.dtd">
+<FBType Comment="HVAC Zone temperature panel controller" Name="Z_CONTROLLER2">
+  <Identification Standard="61499-2"/>
+  <VersionInfo Author="badger" Date="2020-01-14" Version="1.0"/>
+  <CompilerInfo header="#include &quot;Z_CONTROLLER_Library.cpp&quot;"/>
+  <InterfaceList>
+    <EventInputs>
+      <Event Comment="Initialises the zone controller" Name="INIT" Type="Event"/>
+      <Event Comment="" Name="CYCLE" Type="Event"/>
+      <Event Comment="The temperature in the zone has changed." Name="TEMP_CHANGED" Type="Event">
+        <With Var="TEMP"/>
+      </Event>
+      <Event Comment="Signal that the zone set up switch has been pressed" Name="CMD_UP" Type="Event"/>
+      <Event Comment="Signal that the zone set down switch has been pressed" Name="CMD_DOWN" Type="Event"/>
+    </EventInputs>
+    <EventOutputs>
+      <Event Comment="Signals that the temperature in the zone has changed" Name="CNF_TEMP" Type="Event">
+        <With Var="ZONE_TEMP"/>
+      </Event>
+      <Event Comment="Signals that the set temperature in the zone has changed" Name="CNF_SET_TEMP" Type="Event">
+        <With Var="ZONE_TEMP"/>
+        <With Var="SET_TEMP"/>
+      </Event>
+      <Event Comment="Request a new temperature reading " Name="GET_TEMP" Type="Event"/>
+    </EventOutputs>
+    <InputVars>
+      <VarDeclaration Comment="New temperature from the temperature probe" Name="TEMP" Type="REAL"/>
+      <VarDeclaration Comment="" Name="TI" Type="STRING"/>
+    </InputVars>
+    <OutputVars>
+      <VarDeclaration Comment="Current temperature in the zone" Name="ZONE_TEMP" Type="REAL"/>
+      <VarDeclaration Comment="The set temperature in the zone" Name="SET_TEMP" Type="REAL"/>
+    </OutputVars>
+  </InterfaceList>
+  <BasicFB>
+    <InternalVars>
+      <VarDeclaration Comment="Current zone temperature" InitialValue="" Name="ZONE_TEMPERATURE" Type="REAL"/>
+      <VarDeclaration Comment="Current zone set temperature" InitialValue="" Name="ZONE_SET_TEMPERATURE" Type="REAL"/>
+    </InternalVars>
+    <ECC>
+      <ECState Comment="Initial State" Name="START" x="352.94117647058823" y="588.2352941176471"/>
+      <ECState Comment="" Name="INIT" x="1176.4705882352941" y="588.2352941176471">
+        <ECAction Algorithm="initialize" Output="CNF_SET_TEMP"/>
+        <ECAction Output="CNF_TEMP"/>
+      </ECState>
+      <ECState Comment="" Name="NORMAL" x="352.94117647058823" y="1294.1176470588234"/>
+      <ECState Comment="" Name="TEMP" x="1529.4117647058822" y="1176.4705882352941">
+        <ECAction Algorithm="temperatureChanged" Output="CNF_TEMP"/>
+      </ECState>
+      <ECState Comment="" Name="INCREASE_SET_TEMP" x="1529.4117647058822" y="1529.4117647058822">
+        <ECAction Algorithm="increaseSetTemperature" Output="CNF_SET_TEMP"/>
+      </ECState>
+      <ECState Comment="" Name="DECREASE_SET_TEMP" x="1529.4117647058822" y="1882.3529411764705">
+        <ECAction Algorithm="decreaseSetTemperature" Output="CNF_SET_TEMP"/>
+      </ECState>
+      <ECTransition Comment="" Condition="INIT" Destination="INIT" Source="START" x="958.8235294117646" y="670.5882352941176"/>
+      <ECTransition Comment="" Condition="1" Destination="NORMAL" Source="INIT" x="670.5882352941176" y="982.3529411764705"/>
+      <ECTransition Comment="" Condition="TEMP_CHANGED" Destination="TEMP" Source="NORMAL" x="1176.4705882352941" y="1094.1176470588234"/>
+      <ECTransition Comment="" Condition="1" Destination="NORMAL" Source="TEMP" x="1188.235294117647" y="1294.1176470588234"/>
+      <ECTransition Comment="" Condition="CMD_UP" Destination="INCREASE_SET_TEMP" Source="NORMAL" x="1217.6470588235293" y="1505.8823529411764"/>
+      <ECTransition Comment="" Condition="1" Destination="NORMAL" Source="INCREASE_SET_TEMP" x="1076.4705882352941" y="1635.2941176470588"/>
+      <ECTransition Comment="" Condition="CMD_DOWN" Destination="DECREASE_SET_TEMP" Source="NORMAL" x="941.1764705882352" y="1811.7647058823527"/>
+      <ECTransition Comment="" Condition="1" Destination="NORMAL" Source="DECREASE_SET_TEMP" x="676.470588235294" y="1917.6470588235293"/>
+    </ECC>
+    <Algorithm Comment="Initialization algorithm" Name="initialize">
+      <Other Language="AnyText" Text="&#9;cout &lt;&lt; &quot;[Z_CONTROLLER2] alg_initialize()\n&quot;;&#10;&#9;// Set default room temperature and zone temperature&#10;&#9;ZONE_TEMP() = 18.0;&#10;&#9;SET_TEMP() = 15.0;&#10;&#10;"/>
+    </Algorithm>
+    <Algorithm Comment="Normal quiesent operational state of the controller" Name="normalOperation">
+      <Other Language="AnyText" Text="&#9;cout &lt;&lt;  &quot;[Z_CONTROLLER2] alg_normalOperation\n&quot;;"/>
+    </Algorithm>
+    <Algorithm Comment="Zone temperature has changed" Name="temperatureChanged">
+      <Other Language="AnyText" Text="&#9;cout &lt;&lt; &quot;[Z_CONTROLLER2] alg_temperatureChanged\n&quot;;&#10;&#9;ZONE_TEMP() = TEMP();"/>
+    </Algorithm>
+    <Algorithm Comment="Increase the set temperature by one degree" Name="increaseSetTemperature">
+      <Other Language="AnyText" Text="&#9;cout &lt;&lt; &quot;[Z_CONTROLLER2] alg_increaseSetTemperature\n&quot;;&#10;&#9;SET_TEMP() = SET_TEMP() + 1.0;"/>
+    </Algorithm>
+    <Algorithm Comment="Decrease the set temperature by one degree" Name="decreaseSetTemperature">
+      <Other Language="AnyText" Text="&#9;cout &lt;&lt; &quot;[Z_CONTROLLER2] alg_decreaseSetTemperature\n&quot;;&#10;&#9;SET_TEMP() = SET_TEMP() - 1.0;"/>
+    </Algorithm>
+  </BasicFB>
+</FBType>
